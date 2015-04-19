@@ -28,6 +28,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/d3', {
+        templateUrl: 'views/d3.html',
+        controller: 'D3Ctrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
