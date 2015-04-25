@@ -32,6 +32,14 @@ angular
         templateUrl: 'views/d3.html',
         controller: 'D3Ctrl'
       })
+      .when('/query4', {
+        templateUrl: 'views/query4.html',
+        controller: 'Query4Ctrl'
+      })
+      .when('/FacetView', {
+        templateUrl: 'views/facetview.html',
+        controller: 'FacetviewCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
