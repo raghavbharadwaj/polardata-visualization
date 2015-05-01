@@ -1,0 +1,5 @@
+<p>This is the FacetView view.</p>
+
+<div class="facet-view-simple"></div>
+<div id="facetview_results"></div>
+
