@@ -15,8 +15,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'd3'
+    'ngTouch'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -40,7 +39,31 @@ angular
         templateUrl: 'views/facetview.html',
         controller: 'FacetviewCtrl'
       })
-      .otherwise({
+      .when('/query1', {
+        templateUrl: 'views/query1.html',
+        controller: 'Query1Ctrl'
+      })
+      .when('/query2', {
+        templateUrl: 'views/query2.html',
+        controller: 'Query2Ctrl'
+      })
+      .when('/query3', {
+        templateUrl: 'views/query3.html',
+        controller: 'Query3Ctrl'
+      })
+      .when('/query5', {
+        templateUrl: 'views/query5.html',
+        controller: 'Query5Ctrl'
+      })
+      .when('/query6', {
+        templateUrl: 'views/query6.html',
+        controller: 'Query6Ctrl'
+      })
+      .when('/query1', {
+        templateUrl: 'views/query1.html',
+        controller: 'Query1Ctrl'
+      })
+      /*.otherwise({
         redirectTo: '/'
-      });
+      })*/;
   });
