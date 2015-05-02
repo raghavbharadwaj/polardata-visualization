@@ -2,16 +2,15 @@
 <html>
 <body>
 
-
+<div>
 <p>This is the FacetView view.</p>
+</div>
 
-<div class="facet-view-simple"></div>
-<div id="facetview_results"></div>
-
+<p class="facet-view-simple"></p>
 
 
 <script type="text/javascript" src="facetview/vendor/jquery/1.7.1/jquery-1.7.1.min.js"></script>
-<link rel="stylesheet" href="facetview/vendor/bootstrap/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="facetview/vendor/bootstrap/css/bootstrap.min.css">-->
 <script type="text/javascript" src="facetview/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="facetview/vendor/linkify/1.0/jquery.linkify-1.0-min.js"></script>
 <link rel="stylesheet" href="facetview/vendor/jquery-ui-1.8.18.custom/jquery-ui-1.8.18.custom.css">
@@ -26,24 +25,26 @@
 //alert("hiii");
 jQuery(document).ready(function($) {
 //$.fn.facetview.options = $.extend(provided_options,'http://localhost:8983/solr/');
-$.fn.facetview.options.search_url="http://localhost:8983/solr/collection1/select?"
+$.fn.facetview.options.search_url="http://localhost:8983/solr/collection1/select?fl=id,content&"
 //alert($.fn.facetview.options.search_url)
 //("config_file")
 //alert($.fn.facetview.options.config_file)
   $('.facet-view-simple').facetview({
     search_index: 'solr',
     "q":"greenland",
+    "search_sortby":[],
     paging: {
         from: 0,
         size: 10
     }
 
   });
+
 //alert($.fn.facetview.options.data)
 });
 
 
-//alert("hello");
+
   </script>
 
 </body>
