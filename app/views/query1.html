@@ -5,7 +5,7 @@
   stroke-width: 2px; 
 } 
 .node {    
-  font: 12px sans-serif; 
+  font: 10px sans-serif; 
   fill: blue;  
 
 } 
@@ -87,7 +87,7 @@ var root = {
   ]
 }
 
-var margin = 100;
+var margin = 130;
 var angle = 360;
 var cluster = d3.layout.cluster() 
  .size([angle, radius-margin]); 
@@ -96,10 +96,10 @@ var diagonal = d3.svg.diagonal.radial()
  .projection (function(d) { return [d.y, d.x / 180* Math.PI];}); 
 
 var svg = d3.select("#q1").append("svg") 
- .attr("width",3*radius) 
- .attr("height",3*radius) 
+ .attr("width",4*radius) 
+ .attr("height",4*radius) 
  .append("g") 
- .attr("transform","translate("+radius + "," + radius + ")");
+ .attr("transform","translate("+600 + "," + 500 + ")");
  
 //d3.json("dendrogram02.json", function(error, root){ 
  var nodes = cluster.nodes(root); 
