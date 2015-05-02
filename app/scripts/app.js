@@ -75,6 +75,10 @@ angular
         templateUrl: 'views/map.html',
         controller: 'MapCtrl'
       })
+      .when('/Banana', {
+        templateUrl: 'views/banana.html',
+        controller: 'BananaCtrl'
+      })
       /*.otherwise({
         redirectTo: '/'
       })*/;
