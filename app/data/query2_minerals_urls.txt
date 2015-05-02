@@ -51,3 +51,28 @@ https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_024.html
 https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_023.html
 https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_018.html
 
+oil-
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_039.html
+https://www.aoncadis.org/project/Arctic_Oil.html
+https://www.aoncadis.org/project/collaborative_research_diamonds_and_oil_from_the_tundra_a_system_study_on_the_impact_of_changing_seasons_on_mining_and_oil_exploration.html
+https://www.aoncadis.org/dataset/collaborative_research_diamonds_and_oil_from_the_tundra_a_system_study_on_the_impact_of_changing_seasons_on_mining_and_oil_exploration____nsf_award_0902130.html
+https://www.aoncadis.org/project/Arctic_Oil.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_046.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_049.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_042.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_044.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_037.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_020.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_040.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_043.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_045.html
+https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.255_041.html
+
+Natural gas:-
+https://www.aoncadis.org/project/canopy_gas_exchange_and_growth_of_white_spruce_near_the_arctic_treeline_confronting_measurements_with_models_along_natural_and_experimental_resource_gradients.html
+https://www.aoncadis.org/dataset/NEEM_CH4_and_15N_data.html
+https://www.aoncadis.org/project/collaborative_research_the_neem_deep_ice_core.html
+https://www.aoncadis.org/project/collaborative_research_cold-season_gas_exchange_of_arctic_plants_-_resolving_winter_carbon_and_water_balances_of_alaskan_arctic_tundra.html
+https://www.aoncadis.org/dataset/Snowfence_Recoflux_14Cisoflux_porespace14CO2.html
+https://www.aoncadis.org/project/is_the_arctic_human_environment_moving_to_a_new_state.html
+https://www.aoncadis.org/project/collaborative_research_the_impact_of_bromine_chemistry_on_the_isotopic_composition_of_nitrate_at_summit_greenland.html

@@ -1,16 +1,18 @@
 <style>
 .node circle {     
-  fill: #fff;    
+  fill: steelblue;    
   stroke: steelblue;    
-  stroke-width: 1.5px; 
+  stroke-width: 2px; 
 } 
 .node {    
   font: 12px sans-serif; 
+  fill: blue;  
+
 } 
 .link {    
-  fill: none;    
+  fill: red;    
   stroke: #ccc;    
-  stroke-width: 1.5px; 
+  stroke-width: 2px; 
 }
 </style>
 <div id = "q1">
@@ -20,10 +22,10 @@
 
 var radius = 250;
 var root = {
-  "name": "year",
+  "name": "YEAR",
   "children": [
     {
-       "name": "1995-2000",
+       "name": "2003-2006",
        "children": [
       {"name": "http://nsidc.org/data/docs/noaa/g02135_seaice_index/interpretation.html"},
       {"name": "https://nsidc.org/cryosphere/arctic-meteorology/credits.html"},
@@ -33,7 +35,7 @@ var root = {
       {"name": "https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.106_ARCSS069.html"}
        ]
     },{
-       "name": "2000-2005",
+       "name": "2006-2009",
        "children": [
       {"name": "https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.106_ARCSS091.html"},
       {"name": "https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.106_ARCSS119.html"},
@@ -45,7 +47,7 @@ var root = {
       {"name": "http://gcmd.gsfc.nasa.gov/KeywordSearch/Metadata.do?Portal=amd&KeywordPath=&OrigMetadataNode=GCMD&EntryId=NOAA_NCDC_PALEO_2003-014&MetadataView=Full&MetadataType=0&lbnode=mdlb5"}
        ]
     },{
-        "name": "2005-2015",
+        "name": "2006-2009",
         "children": [
       {"name": "https://www.polardata.ca/pdcsearch/PDCSearch.jsp?doi_id=11786"},
       {"name": "https://www.aoncadis.org/project/the_svalbard_reu_holocene_and_modern_climate_change_in_the_high_arctic.html"},
@@ -54,11 +56,38 @@ var root = {
       {"name": "https://nsidc.org/news/newsroom/wilkins/"},
       {"name": "https://www.aoncadis.org/project/shorebirds.html"}
     ]
+  },{
+        "name": "2009-2012",
+        "children": [
+      {"name": "https://www.aoncadis.org/dataset/0909354.html"},
+      {"name": "https://www.aoncadis.org/project/the_greenland_gps_network_gnet_geodetic_characterization_of_water_vapor_climate_cycles_climate_change_and_ice_mass_balance.html"},
+      {"name": "https://www.aoncadis.org/project/shorebirds.html"},
+      {"name": "https://www.aoncadis.org/project/collaborative_research_ipy_observation_and_modeling_of_tundra_ecosystem_responses_to_climate_change.html"},
+      {"name": "https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.245_B74_001.html"},
+      {"name": "https://www.aoncadis.org/project/PHENARC.html"},
+      {"name": "https://www.aoncadis.org/project/biomass_burning_dust_sea_salt_volcanic_and_pollution_aerosols_in_the_arctic_during_the_last_2_millennia_high_resolution_aerosol_records_from_neem_and_an_aray_of_archived_ice_cores.html"},
+      {"name": "https://www.aoncadis.org/project/interannual_variability_in_carbon_export_to_the_deep_arctic_ocean.html"},
+      {"name": "https://www.aoncadis.org/search.html?startDate=2009-01-01&page=2&freeText=climate+change&endDate=2012-01-01"},
+      {"name": "https://www.aoncadis.org/project/long-term_measurements_of_nitrogen_oxides_at_the_geosummit_station_greenland.html"},
+      {"name": "https://www.aoncadis.org/project/annual_observations_of_the_biological_and_physical_marine_environment_in_the_chukchi_and_nearshore_beaufort_seas_near_barrow_ak.html"},
+      {"name": "https://www.aoncadis.org/project/core_measurements_at_summit_greenland_environmental_observatory.html"}
+    ]
+  },{
+        "name": "2012-2015",
+        "children": [
+      {"name": "https://www.aoncadis.org/project/ucar.ncar.eol.project.BSIERP.html"},
+      {"name": "https://www.aoncadis.org/project/rui_collaborative_research_fire_regime_influences_on_carbon_dynamics_of_siberian_boreal_forests.html"},
+      {"name": "https://www.aoncadis.org/dataset/AON-CTD.html"},
+      {"name": "https://www.aoncadis.org/dataset/www.geobotany.uaf.edu.html"},
+      {"name": "https://www.aoncadis.org/dataset/ucar.ncar.eol.dataset.106_ARCSS052.html"},
+      {"name": "https://www.aoncadis.org/project/searching_for_abrupt_climate_change_precursors_using_ultra_high_resolution_ice_core_analysis.html"},
+      {"name": "https://www.aoncadis.org/project/the_greenland_gps_network_gnet_geodetic_characterization_of_water_vapor_climate_cycles_climate_change_and_ice_mass_balance.html"}
+    ]
   }
   ]
 }
 
-var margin = 120;
+var margin = 100;
 var angle = 360;
 var cluster = d3.layout.cluster() 
  .size([angle, radius-margin]); 
@@ -67,8 +96,8 @@ var diagonal = d3.svg.diagonal.radial()
  .projection (function(d) { return [d.y, d.x / 180* Math.PI];}); 
 
 var svg = d3.select("#q1").append("svg") 
- .attr("width",2*radius) 
- .attr("height",2*radius) 
+ .attr("width",3*radius) 
+ .attr("height",3*radius) 
  .append("g") 
  .attr("transform","translate("+radius + "," + radius + ")");
  
