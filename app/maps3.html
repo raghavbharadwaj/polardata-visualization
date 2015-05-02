@@ -45,10 +45,39 @@ width: 80%;
   </head>
   <body>
 
+   <body>
+    <div class="header">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html">Assignment-3</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a ng-href="#/FacetView">FacetView</a></li>
+              <li><a ng-href="#/Banana">Banana</a></li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="map"></div>
-          <div class="btn-group pull-right">
+         <div style="margin:-500px 40px 0px 0px"> <div class="btn-group pull-right">
           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-               Messages per hour <span class="caret"></span>
+               Natural Resource <span class="caret"></span>
         </button>
           <ul class="dropdown-menu" role="menu">
             <li><a class="m" value="2014-02-19" href="maps.html">GAS</a></li>
@@ -57,12 +86,13 @@ width: 80%;
             <li><a class="m" value="2014-02-22" href="maps4.html">MINERALS</a></li>
           </ul>
       </div>
+      </div>
     <script type="text/javascript">
 
 // Create the Google Map…
 var map = new google.maps.Map(d3.select("#map").node(), {
-  zoom: 1,
-  center: new google.maps.LatLng(37.76487, -122.41948),
+  zoom: 3,
+  center: new google.maps.LatLng(60.76487, -122.41948),
   mapTypeId: google.maps.MapTypeId.TERRAIN
 });
 
