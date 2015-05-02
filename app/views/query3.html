@@ -1,171 +1,229 @@
-  <p id="p1">
-  <p id="p2">
+<div id="tooltip" class="hidden">
+    <p><span id="value">100</span>
+    </p>
+</div>
 <style>
-  body {
-  font: 10px sans-serif;
+.axis path, .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
 }
-#p1 svg:last-child{
-    border:1px solid red;
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
 }
-.axis line, .axis path {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+#tooltip {
+    position: absolute;
+    text-align: center;
+    width: 40px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
 }
-rect{
-stroke:#0f0;
+#tooltip.hidden {
+    display: none;
 }
-.bar {
-  fill: #52D017;
-  fill-opacity:1;
+#tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
 }
-        .y.axis g{
-            display:none;
-        }
 
 </style>
 <body>
+  <div id = "q3">
+     <div><h3><b>Sea Ice Extent change in Antarctic & Arctic during 2012-2013</b> </h3> </div>
+    <div style="margin-left:500px"> <a class="btn btn-default" href="#/antarctic" role="button">Antartic</a>
+  <a class="btn btn-default" href="#/arctic" role="button">Arctic</a></div></div>
+  <div style="margin-left:350px">Absolute Sea Ice Trend(Sq Km/year)</div>
   </body>
-   <a class="btn btn-default" href="#/query3" role="button">Antartic</a>
-  <a class="btn btn-default" href="#/arctic" role="button">Arctic</a>
- <script src="http://d3js.org/d3.v2.js" type="text/javascript"></script>
+
 <script>
-function simpleBarChart() {
-  var width = 220, // default width
-      height = 60, // default height
-      x= d3.scale.ordinal()
-          .rangeRoundBands([0, width], .1),
-      y= d3.scale.linear()
-          .range([height, 0]),
-      defaultMargin = 5,
-      margin = {left:defaultMargin,right:defaultMargin,top:defaultMargin,bottom:defaultMargin+15},
-      xAxis= d3.svg.axis()
-          .scale(x)
-          .orient("bottom"),
-      yAxis= d3.svg.axis()
-          .scale(y)
-          .orient("left")
-          .tickSize(0),
-      svg=null,
-      xaxis,
-      yaxis;
+var margins = {
+    top: 12,
+    left: 48,
+    right: 24,
+    bottom: 24
+},
+legendPanel = {
+    width: 180
+},
+width = 1000 - margins.left - margins.right - legendPanel.width,
+    height = 500 - margins.top - margins.bottom,
+    dataset = [{
+        data: [{
+            month: 'Jul-12',
+            count: 10000
+        }, {
+            month: 'Sep-12',
+            count: 7800
+        }, {
+            month: 'Oct-12',
+            count: 6140
+        },{
+            month: 'Nov-12',
+            count: 6530
+        }, {
+            month: 'Dec-12',
+            count: 10460
+        }, {
+            month: 'Jan-13',
+            count: 10800
+        },{
+            month: 'Feb-13',
+            count: 11600
+        }, {
+            month: 'Mar-13',
+            count: 15500
+        }, {
+            month: 'Apr-13',
+            count: 19600
+        },{
+            month: 'May-13',
+            count: 25200
+        }, {
+            month: 'Jun-13',
+            count: 35500
+        }, {
+            month: 'Jul-13',
+            count: 36000
+        }],
+        name: 'Sea Level Rise(Sq Km/Year)'
+    }
+    ],
+    series = dataset.map(function (d) {
+        return d.name;
+    }),
+    dataset = dataset.map(function (d) {
+        return d.data.map(function (o, i) {
+            // Structure it so that your numeric
+            // axis (the stacked amount) is y
+            return {
+                y: o.count,
+                x: o.month
+            };
+        });
+    }),
+    stack = d3.layout.stack();
 
-  function my(selection) {
-      selection.each(function(d, i) {
-          // `d` is the data and `this` is the element
-          // using `width` and `height`
-           if (svg == null)               
-           {svg = d3.select(this).append("svg");
-            
-           x.domain(d.map(function(d) { return d.day; }));
-           y.domain([0, d3.max(d, function(d) { return d.value; })]);
-            
-            xaxis = svg.append("g")
-               .attr("class", "x axis");
-               
-            yaxis = svg.append("g")
-               .attr("class", "y axis");
-           }
-                 
-          xaxis.call(xAxis).attr("transform", "translate(0," + height + ")")
-         ;
-          yaxis.call(yAxis);
-          svg
-              .attr('class','none')
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+stack(dataset);
 
-           d.forEach(function(_d) {
-             _d.value = +_d.value;
-           });
-           console.log('this should be the dataset');
-           console.log(d);            
-           svg.selectAll(".bar")
-               .data(d)
-             .enter()
-               .append("rect")
-               .attr("width",1)
-               .attr("class", "bar")
-               .attr("x", function(d) { return x(d.day); })
-               .attr("y", function(d) { return y(d.value); })
-               .attr("height", function(d) { return height - y(d.value)})
-               .transition()
-                   .attr("width", x.rangeBand())
-               ; 
-      });
-  }
+var dataset = dataset.map(function (group) {
+    return group.map(function (d) {
+        // Invert the x and y values, and y0 becomes x0
+        return {
+            x: d.y,
+            y: d.x,
+            x0: d.y0
+        };
+    });
+}),
+    svg = d3.select('#q3')
+        .append('svg')
+        .attr('width', width + margins.left + margins.right + legendPanel.width)
+        .attr('height', height + margins.top + margins.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margins.left + ',' + margins.top + ')'),
+    xMax = d3.max(dataset, function (group) {
+        return d3.max(group, function (d) {
+            return d.x + d.x0;
+        });
+    }),
+    xScale = d3.scale.linear()
+        .domain([0, xMax])
+        .range([0, width]),
+    months = dataset[0].map(function (d) {
+        return d.y;
+    }),
+    _ = console.log(months),
+    yScale = d3.scale.ordinal()
+        .domain(months)
+        .rangeRoundBands([0, height], .1),
+    xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient('bottom'),
+    yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient('left'),
+    colours = d3.scale.category10(),
+    groups = svg.selectAll('g')
+        .data(dataset)
+        .enter()
+        .append('g')
+        .style('fill', function (d, i) {
+        return colours(i);
+    }),
+    rects = groups.selectAll('rect')
+        .data(function (d) {
+        return d;
+    })
+        .enter()
+        .append('rect')
+        .attr('x', function (d) {
+        return xScale(d.x0);
+    })
+        .attr('y', function (d, i) {
+        return yScale(d.y);
+    })
+        .attr('height', function (d) {
+        return yScale.rangeBand();
+    })
+        .attr('width', function (d) {
+        return xScale(d.x);
+    })
+        .on('mouseover', function (d) {
+        var xPos = parseFloat(d3.select(this).attr('x')) / 2+ width / 2;
+        var yPos = parseFloat(d3.select(this).attr('y')) + yScale.rangeBand() ;
 
-  my.width = function(value) {
-    if (!arguments.length) return width;
-    width = value;
-    
-      x = d3.scale.ordinal() 
-          .rangeRoundBands([0, width], .1);
-    
-      xAxis = d3.svg.axis()
-          .scale(x)
-          .orient("bottom");
-  /**/
-      return my;
-  };
+        d3.select('#tooltip')
+            .style('left', xPos + 'px')
+            .style('top', yPos + 'px')
+            .select('#value')
+            .text(d.x);
 
-  my.height = function(value) {
-    if (!arguments.length) return height;
-    height = value;
-      y = d3.scale.linear()
-                .range([height, 0]);
-      yAxis = d3.svg.axis()
-                .scale(y)
-                .orient("left")
-              .tickSize(0);
+        d3.select('#tooltip').classed('hidden', false);
+    })
+        .on('mouseout', function () {
+        d3.select('#tooltip').classed('hidden', true);
+    })
 
-    return my;
-  };
+    svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis);
 
-    my.x = function(value) {
-      if (!arguments.length) return x;
-      x = value;
-      return my;
-    };
-    my.y = function(value) {
-      if (!arguments.length) return y;
-      y = value;
-      return my;
-    };
-    my.data = function(value) {
-      if (!arguments.length) return data;
-      data = value;
+svg.append('g')
+    .attr('class', 'axis')
+    .call(yAxis);
 
-      return my;
-    };
+//svg.append('rect')
+ //   .attr('fill', 'yellow')
+ //   .attr('width', 160)
+ //   .attr('height', 30 * dataset.length)
+ //   .attr('x', width + margins.left)
+ //   .attr('y', 0);
 
-  return my;
-}
-
-//var vals = [5,10,15,60,12,15,17];
-//var days = ['M','Tu','W','Th','Fr','Sa','Su'];
-//var data = days.map(function(d,i){return //{"value":vals[i],"day":days[i]};});
-
-//var myChart = simpleBarChart().width(200).height(50);
-//d3.selectAll("#p1")
- //     .datum(data)
-   //   .call(myChart);
-
-var vals2 = [9500,10000,11100,10600,11500,16200,13100,11000,17200,19500,24000,25200];
-var days2 = ['Jul-12','Aug-12','Sept-12','Oct-12','Nov-12','Dec-12','Jan-13','Feb-13','Mar-13','Apr-13','May-13','Jun-13'];
-var data2 = days2.map(function(d,i){return {"value":vals2[i],"day":days2[i]};});
- 
-var myChart2 = simpleBarChart().width(700).height(500);
-d3.selectAll("#p2")
-      .datum(data2)
-      .call(myChart2);
-
-//// trying to update here:
-//vals = [35,2,35,2,32,3,37];
-//data = days.map(function(d,i){return {"value":vals[i],"day":days[i]};});
-//myChart.width(400).data(data);
-//d3.select("#p1").datum(data).call(myChart);
+//series.forEach(function (s, i) {
+  //  svg.append('text')
+  //      .attr('fill', 'black')
+ //       .attr('x', width + margins.left + 8)
+ //       .attr('y', i * 24 + 24)
+ //       .text(s);
+ //   svg.append('rect')
+  //      .attr('fill', colours(i))
+ //       .attr('width', 10)
+ //       .attr('height', 20)
+  //      .attr('x', width + margins.left + 90)
+  //      .attr('y', i * 24 + 6);
+//}
+//);
 
 </script>
