@@ -71,6 +71,10 @@ angular
         templateUrl: 'views/antarctic.html',
         controller: 'AntarcticCtrl'
       })
+      .when('/map', {
+        templateUrl: 'views/map.html',
+        controller: 'MapCtrl'
+      })
       /*.otherwise({
         redirectTo: '/'
       })*/;
