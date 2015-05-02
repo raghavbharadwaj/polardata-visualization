@@ -63,6 +63,14 @@ angular
         templateUrl: 'views/query1.html',
         controller: 'Query1Ctrl'
       })
+      .when('/arctic', {
+        templateUrl: 'views/arctic.html',
+        controller: 'ArcticCtrl'
+      })
+      .when('/antarctic', {
+        templateUrl: 'views/antarctic.html',
+        controller: 'AntarcticCtrl'
+      })
       /*.otherwise({
         redirectTo: '/'
       })*/;
